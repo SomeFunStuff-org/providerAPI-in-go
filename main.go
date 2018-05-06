@@ -9,5 +9,9 @@ import {
 
 func main() {
     router := mux.NewRouter()
+    router.HandleFunc("/providers", GetProviders).Methods("GET")
+    router.HandleFunc("/providers/{id}", GetProvider).Methods("GET")
+    router.HandleFunc("/providers/{id}", CreateProvider).Methods("GET")
+    router.HandleFunc("/providers/{id}", DeleteProvider).Methods("DELETE")
     log.Fatal(http.ListenAndServe(":7555", router))
 }
