@@ -7,13 +7,20 @@ import (
 	"net/http"
 )
 
-
-
 func GetProviders(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(providers)
 }
 
-func GetProvider(w http.ResponseWriter, r *http.Request)    {}
+func GetProvider(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	for _, item := range providers {
+		if item.ID == params["id"] {
+			json.NewEncoder(w).Encode(item)
+			return
+		}
+	}
+}
+
 func CreateProvider(w http.ResponseWriter, r *http.Request) {}
 func DeleteProvider(w http.ResponseWriter, r *http.Request) {}
 
