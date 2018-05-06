@@ -21,7 +21,15 @@ func GetProvider(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func CreateProvider(w http.ResponseWriter, r *http.Request) {}
+func CreateProvider(w http.ResponseWriter, r *http.Request) {
+    params := mux.Vars(r)
+    var provider Provider
+    _ = json.NewDecoder(r.body).Decode(&person)
+    provider.ID = params["id"]
+    providers = append(providers, provider)
+    json.NewEncoder(w).Encode(providers)
+}
+
 func DeleteProvider(w http.ResponseWriter, r *http.Request) {}
 
 type Provider struct {
